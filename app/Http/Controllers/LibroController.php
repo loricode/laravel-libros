@@ -36,12 +36,13 @@ class LibroController extends Controller
     public function store(Request $request)
     {
        $libro = new Libro;
-       $nombre = $request->input('nombre');
-       $edicion = $request->input('edicion');
+       $data = $request->json()->all();
+       $nombre = $data['nombre'];
+       $edicion = $data['edicion'];
        $libro->nombre = $nombre;
        $libro->edicion = $edicion;
        $libro->save();
-       return json_encode(["msg"=>"libro guardado"]); // return redirect('/libro');
+       return json_encode(["msg"=>"libro agregado"]); // return redirect('/libro');
     }
 
     /**
