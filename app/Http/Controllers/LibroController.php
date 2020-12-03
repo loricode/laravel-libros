@@ -78,12 +78,13 @@ class LibroController extends Controller
      */
     public function update(Request $request)
     {
-       $nombre = $request->input('nombre');
-       $edicion = $request->input('edicion');
-       $id = $request->input('id');
+       $data = $request->json()->all();
+       $nombre = $data['nombre'];
+       $edicion = $data['edicion'];
+       $id = $data['id'];
        Libro::where('id', $id)
              ->update([ 'nombre'=>$nombre, "edicion"=>$edicion ]);
-       return '{"msg":"actualizado"}';
+       return json_encode(["msg"=>"libro actualizado"]); 
     }
 
     /**
@@ -94,8 +95,8 @@ class LibroController extends Controller
      */
     public function destroy($id)
     {
-         $res =  Libro::destroy($id);
-         return '{"id":"'.$id.'","msg":"eliminado" }'; 
+         Libro::destroy($id);
+         return json_encode(["msg"=>"libro Eliminado"]);
       // return  redirect('/libro');
     }
 }

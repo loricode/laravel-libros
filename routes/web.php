@@ -10,4 +10,4 @@ Route::delete('/libro/{id}', 'LibroController@destroy');
 
 Route::get('/libro/{id}', 'LibroController@edit');
 
-Route::post('/libro/update', 'LibroController@update');
+Route::put('/libro', 'LibroController@update');
